@@ -63,7 +63,7 @@ JOIN Albums a ON pa.album_id = a.albumsid
 WHERE EXTRACT(year FROM year_of_release) = 2020
 );
 
- или BETWEEN '2020-01-01' AND '2020-12-31'
+-- или BETWEEN '2020-01-01' AND '2020-12-31'
 
 
 -- 3.5
