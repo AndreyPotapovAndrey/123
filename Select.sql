@@ -1,8 +1,8 @@
 
 -- 2.1
 
-SELECT track_name, MAX(duration) FROM Track
-GROUP BY track_name;
+SELECT track_name FROM Track
+WHERE duration = (SELECT MAX(duration) from Track);
 
 -- 2.2
 
@@ -13,7 +13,7 @@ WHERE duration  >= 210;
 
 SELECT compilation_name, realise_date
 FROM Compilations
-WHERE realise_date BETWEEN '2018-01-01' and '2020-01-01';
+WHERE realise_date BETWEEN '2018-01-01' and '2020-12-31';
 
 -- 2.4
 
@@ -23,12 +23,9 @@ WHERE name_performer NOT LIKE '% %';
 
 -- 2.5
 
-SELECT track_name
-FROM Track 
-WHERE lower(track_name) LIKE '%мой%'
-OR lower(track_name) LIKE '% мой %'
-OR lower(track_name) LIKE '% мой%'
-OR lower(track_name) LIKE '%мой %';
+SELECT track_name AS Track
+FROM Track
+WHERE 'мой' = ANY (STRING_TO_ARRAY(LOWER(track_name), ' '));
 
 
 -- 3.1
